@@ -1,37 +1,26 @@
 {
   "name": "steelmesh",
-  "description": "CouchDB distribution and management of Node.js applications",
+  "description": "CouchDB remote Node.js application loader and synchronizer",
   "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
   "tags": [
     "couchdb",
     "distributed"
   ],
-  "version": "0.9.8",
-  "main": "server.js",
+  "version": "2.0.0-alpha-1",
   "engines": {
     "node": ">= 0.6.x < 0.9.0"
   },
   "dependencies": {
     "async": "0.1.x",
     "attachmate": "0.1.x",
+    "changemate": "0.4.x",
     "config": "0.4.x",
-    "changemachine": "0.4.x",
-    "dateformat": "1.0.2-1.2.3",
-    "debug": "*",
-    "express": "2.5.x",
-    "mime": "1.x.x",
-    "mkdirp": "0.3.x",
-    "nano": "1.3.x",
-    "plug": "0.1.x",
-    "redis": "0.7.x",
-    "replimate": "0.2.x",
-    "request": "2.9.x",
-    "swig": "0.12.x",
-    "tar": "0.1.x",
-    "out": "*",
+    "request": "2.11.x",
     "underscore": "1.3.x"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "1.4.x"
+  },
   "repository": {
     "type": "git",
     "url": "http://github.com/steelmesh/steelmesh.git"
