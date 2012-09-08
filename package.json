@@ -30,7 +30,7 @@
     "url": "http://github.com/steelmesh/steelmesh/issues"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec -t 10000"
+    "test": "./node_modules/.bin/mocha --reporter spec -t 20000"
   },
   "contributors": []
 }
