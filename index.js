@@ -24,13 +24,25 @@ function steelmesh(opts) {
 	// use piper to create an event chain
 	mesh = piper(opts.id);
 
+	// create a generic logger function
+	mesh.log = mesh.bind(mesh, 'log.debug');
+
+	// bind the logging events
+	['warn', 'info', 'debug'].forEach(function(logLevel) {
+		mesh[logLevel] = mesh.bind(mesh, 'log.' + logLevel);
+	});
+
+	mesh.on('log', console.log);
+
 	// attach the operations modules
 	discoveredOps.forEach(function(opName) {
+		var opFn = require('./operations/' + opName);
+
 		// if we have a conflict report an error
 		if (mesh.hasOwnProperty(opName)) throw new Error('Invalid operation name: ' + opName);
 
 		// bind the operation to the mesh object
-		mesh[path.basename(opName, '.js')] = require('./operations/' + opName).bind(mesh, mesh);
+		mesh[path.basename(opName, '.js')] = opFn.bind(mesh, mesh, opts);
 	});
 
 	// return the mesh instance
