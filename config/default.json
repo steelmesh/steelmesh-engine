@@ -1,0 +1,36 @@
+{
+    "server": {
+        "port": 6633,
+        "resourceTimeout": 10,
+        "workers": "auto"
+    },
+    
+    "monitor": {
+        "checkInterval": 300,
+        "checkTimeout": 30,
+        "reconnectDelay": 30
+    },
+    
+    "dashboard": {
+        "port": 3274
+    },
+    
+    "discovery": {
+        "type": "none"
+    },
+    
+    "apploader": "couch",
+    "couchurl": "http://localhost:5984",
+    "meshdb": "steelmesh",
+    
+    "admin": {
+        "couchurl": "http://admin:steelmesh@localhost:5984"
+    },
+    
+    "redis": {
+        "port": 6379,
+        "host": "localhost"
+    },
+    
+    "logFlushInterval": 10
+}

@@ -1,0 +1,14 @@
+assets/dashboard/uploads
+assets/dashboard/package-archive
+lib/apps/
+config/development.json
+config/production.json
+config/runtime.json
+changelog/
+node_modules
+logs/
+.sock
+changemachine.json
+npm-debug.log
+steelmesh.pid
+docs/_build
