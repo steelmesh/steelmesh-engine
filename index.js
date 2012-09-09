@@ -32,7 +32,7 @@ function steelmesh(opts) {
 		mesh[logLevel] = mesh.bind(mesh, 'log.' + logLevel);
 	});
 
-	mesh.on('log', console.log);
+	// mesh.on('log', console.log);
 
 	// attach the operations modules
 	discoveredOps.forEach(function(opName) {

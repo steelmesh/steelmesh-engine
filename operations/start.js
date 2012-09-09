@@ -4,7 +4,7 @@ var async = require('async'),
 // # mesh.start
 // This operation is used to start a steelmesh instance running
 module.exports = function(mesh, opts, callback) {
-	var tasks = ['connect'];
+	var tasks = ['connect', 'query', 'monitor'];
 
 	// initialise the tasks
 	tasks = tasks.map(function(task) {
@@ -13,6 +13,6 @@ module.exports = function(mesh, opts, callback) {
 
 	// run the initialization tasks 
 	async.series(tasks, function(err) {
-		mesh.emit(err ? 'ready' : 'error', err);
+		mesh.emit(err ? 'error' : 'ready', err);
 	});
 };
