@@ -1,5 +1,3 @@
-
-
 // # mesh.monitor
 // The monitor operation monitors the connected db for changes
 function monitor(mesh, opts, callback) {

@@ -1,4 +1,5 @@
-var fs = require('fs'),
+var async = require('async'),
+	fs = require('fs'),
 	path = require('path'),
 	piper = require('piper'),
 	_ = require('underscore'),
@@ -10,7 +11,20 @@ var fs = require('fs'),
 
 	// locate operations specified in the operations directory
 	discoveredOps = fs.readdirSync(path.resolve(__dirname, 'operations'))
-		.filter(reJSFile.test.bind(reJSFile));
+		.filter(reJSFile.test.bind(reJSFile))
+		.map(function(opName) {
+			return path.basename(opName, '.js');
+		});
+
+function run(mesh, opts, tasks, callback) {
+	// initialise the tasks
+	tasks = tasks.map(function(task) {
+		return require('./operations/' + task).bind(mesh, mesh, opts);
+	});
+
+	// run the initialization tasks 
+	async.series(tasks, callback);
+}
 
 function steelmesh(opts) {
 	var mesh;
@@ -32,7 +46,8 @@ function steelmesh(opts) {
 		mesh[logLevel] = mesh.bind(mesh, 'log.' + logLevel);
 	});
 
-	// mesh.on('log', console.log);
+	// attach the run helper
+	mesh.run = run.bind(mesh, mesh, opts);
 
 	// attach the operations modules
 	discoveredOps.forEach(function(opName) {
@@ -40,6 +55,9 @@ function steelmesh(opts) {
 
 		// if we have a conflict report an error
 		if (mesh.hasOwnProperty(opName)) throw new Error('Invalid operation name: ' + opName);
+
+		// if the option function is empty, then throw an error
+		if (typeof opFn != 'function') throw new Error('No operation export for operation: ' + opName);
 
 		// bind the operation to the mesh object
 		mesh[path.basename(opName, '.js')] = opFn.bind(mesh, mesh, opts);

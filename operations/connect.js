@@ -2,7 +2,7 @@ var async = require('async'),
 	errs = require('errs'),
 	nano = require('nano'),
 	request = require('request'),
-	regexes = require('../regexes');
+	regexes = require('../lib/regexes');
 
 // # mesh.connect
 // The connect operation is used to establish a connection to the 
