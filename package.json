@@ -1,0 +1,24 @@
+{
+  "name": "steelmesh-engine",
+  "version": "0.0.0",
+  "description": "Node Application Registry and nginx proxy configurator",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/tape test/all.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/steelmesh/steelmesh-engine.git#sm-next"
+  },
+  "keywords": [
+    "deployment",
+    "couchdb"
+  ],
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "license": "Apache2",
+
+  "dependencies": {
+    "ngineer": "*",
+    "seaport": "1.5.x"
+  }
+}
